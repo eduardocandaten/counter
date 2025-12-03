@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            color: #222;
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        #counter {
+            font-size: min(90vw, 36rem);
+            line-height: 1;
+            text-align: center;
+            font-weight: bold;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="counter">1</span>
+
+    <script>
+        const counter = () => document.getElementById('counter')
+        const number = () => parseInt(counter().textContent)
+
+        function add(value = 1) {
+            editar(number() + value)
+        }
+
+        function subtract(value = 1) {
+            editar(number() - value)
+        }
+
+        function editar(value) {
+            counter().textContent = value
+        }
+
+        document.addEventListener('click', () => add())
+        document.addEventListener('keydown', ({ key }) => {
+            if (key === ' ' || key === '+' || key === '=' || key === 'ArrowUp') add()
+            if (key === '-' || key === 'ArrowDown') subtract()
+            if (key === 'e' || key === 'E') editar(prompt('Digite um número:') || number())
+        })
+    </script>
+</body>
+
+</html>
